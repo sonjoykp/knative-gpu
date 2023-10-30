@@ -30,3 +30,6 @@ kubectl delete -f https://github.com/knative-sandbox/eventing-kafka-broker/relea
 #Knative Eventing
 kubectl delete -f https://storage.googleapis.com/knative-nightly/eventing/latest/eventing-core.yaml
 kubectl delete -f https://storage.googleapis.com/knative-nightly/eventing/latest/eventing-crds.yaml
+
+yes | sudo kubeadm reset
+sudo rm -r $HOME/.kube
