@@ -1,0 +1,19 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: helloworld-go
+spec:
+  template:
+    metadata:
+      labels:
+        app: helloworld-go
+      annotations:
+        k8s.aliyun.com/eci-use-specs: ecs.gn5i-c4g1.xlarge  # Specify a GPU-accelerated ECS instance type that is supported by Knative. 
+    spec:
+      containers:
+        - image: registry.cn-hangzhou.aliyuncs.com/knative-sample/helloworld-go:73fbdd56
+          ports:
+          - containerPort: 8080
+          resources:
+            limits:
+              nvidia.com/gpu: '1'    # Specify the number of GPUs that are required by the container. This field is required. If you do not specify this field, an error is returned when the pod is launched. 

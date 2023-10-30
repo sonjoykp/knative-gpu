@@ -1,0 +1,14 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: gpu-pod-ksvc
+spec:
+  template:
+    spec:
+      containers:
+        - image: nvcr.io/nvidia/k8s/cuda-sample:vectoradd-cuda10.2
+          ports:
+            - containerPort: 8080
+      resources:
+        limits:
+          nvidia.com/gpu: 1 # requesting 1 GPU

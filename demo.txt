@@ -1,0 +1,91 @@
+The command worked for me: curl -H "Host: hello.default.example.com" http://141.215.80.249:31240
+
+curl -H "Host: gpu-pod-ksvc.default.example.com" http://141.215.80.249:31240
+
+curl -H "Host: helloworld-go.default.example.com" http://141.215.80.249:31240
+
+NAMESPACE         NAME                                           READY   STATUS    RESTARTS   AGE
+istio-system      pod/istio-ingressgateway-b9876bf74-626ks       1/1     Running   0          30m
+istio-system      pod/istio-ingressgateway-b9876bf74-7lwbq       1/1     Running   0          30m
+istio-system      pod/istio-ingressgateway-b9876bf74-rpmn9       1/1     Running   0          30m
+istio-system      pod/istiod-846b9454f-kqbww                     1/1     Running   0          30m
+istio-system      pod/istiod-846b9454f-n6zvq                     1/1     Running   0          30m
+istio-system      pod/istiod-846b9454f-qrhx6                     1/1     Running   0          30m
+knative-serving   pod/activator-5bbf47578-gpt4n                  1/1     Running   0          150m
+knative-serving   pod/autoscaler-b86f9b6c9-phbzt                 1/1     Running   0          150m
+knative-serving   pod/controller-75f49bc546-shbl2                1/1     Running   0          150m
+knative-serving   pod/net-istio-controller-745b6f47b6-p5g24      1/1     Running   0          30m
+knative-serving   pod/net-istio-webhook-678d4cf44b-p9dl2         1/1     Running   0          30m
+knative-serving   pod/webhook-849fbd7c96-zltzg                   1/1     Running   0          150m
+kube-system       pod/calico-kube-controllers-7d64c8fdd5-jmzzd   1/1     Running   0          152m
+kube-system       pod/calico-node-fllxg                          1/1     Running   0          152m
+kube-system       pod/coredns-5dd5756b68-72p9r                   1/1     Running   0          153m
+kube-system       pod/coredns-5dd5756b68-99gtt                   1/1     Running   0          153m
+kube-system       pod/etcd-srl-node0                             1/1     Running   6          153m
+kube-system       pod/kube-apiserver-srl-node0                   1/1     Running   5          153m
+kube-system       pod/kube-controller-manager-srl-node0          1/1     Running   2          153m
+kube-system       pod/kube-proxy-f48zc                           1/1     Running   0          153m
+kube-system       pod/kube-scheduler-srl-node0                   1/1     Running   5          153m
+
+NAMESPACE         NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP                                            PORT(S)                                              AGE
+default           service/hello                        ExternalName   <none>           knative-local-gateway.istio-system.svc.cluster.local   80/TCP                                               18m
+default           service/hello-00001                  ClusterIP      10.106.231.63    <none>                                                 80/TCP,443/TCP                                       18m
+default           service/hello-00001-private          ClusterIP      10.106.56.232    <none>                                                 80/TCP,443/TCP,9090/TCP,9091/TCP,8022/TCP,8012/TCP   18m
+default           service/kubernetes                   ClusterIP      10.96.0.1        <none>                                                 443/TCP                                              153m
+istio-system      service/istio-ingressgateway         LoadBalancer   10.107.115.24    141.215.80.249                                         15021:30905/TCP,80:31240/TCP,443:30568/TCP           30m
+istio-system      service/istiod                       ClusterIP      10.109.152.183   <none>                                                 15010/TCP,15012/TCP,443/TCP,15014/TCP                30m
+istio-system      service/knative-local-gateway        ClusterIP      10.111.74.0      <none>                                                 80/TCP                                               30m
+knative-serving   service/activator-service            ClusterIP      10.107.116.224   <none>                                                 9090/TCP,8008/TCP,80/TCP,81/TCP,443/TCP              150m
+knative-serving   service/autoscaler                   ClusterIP      10.107.138.17    <none>                                                 9090/TCP,8008/TCP,8080/TCP                           150m
+knative-serving   service/autoscaler-bucket-00-of-01   ClusterIP      10.106.163.243   <none>                                                 8080/TCP                                             150m
+knative-serving   service/controller                   ClusterIP      10.104.189.175   <none>                                                 9090/TCP,8008/TCP                                    150m
+knative-serving   service/net-istio-webhook            ClusterIP      10.111.241.81    <none>                                                 9090/TCP,8008/TCP,443/TCP                            30m
+knative-serving   service/webhook                      ClusterIP      10.104.38.162    <none>                                                 9090/TCP,8008/TCP,443/TCP                            150m
+kube-system       service/kube-dns                     ClusterIP      10.96.0.10       <none>                                                 53/UDP,53/TCP,9153/TCP                               153m
+
+NAMESPACE     NAME                         DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+kube-system   daemonset.apps/calico-node   1         1         1       1            1           kubernetes.io/os=linux   152m
+kube-system   daemonset.apps/kube-proxy    1         1         1       1            1           kubernetes.io/os=linux   153m
+
+NAMESPACE         NAME                                      READY   UP-TO-DATE   AVAILABLE   AGE
+default           deployment.apps/hello-00001-deployment    0/0     0            0           18m
+istio-system      deployment.apps/istio-ingressgateway      3/3     3            3           30m
+istio-system      deployment.apps/istiod                    3/3     3            3           30m
+knative-serving   deployment.apps/activator                 1/1     1            1           150m
+knative-serving   deployment.apps/autoscaler                1/1     1            1           150m
+knative-serving   deployment.apps/controller                1/1     1            1           150m
+knative-serving   deployment.apps/net-istio-controller      1/1     1            1           30m
+knative-serving   deployment.apps/net-istio-webhook         1/1     1            1           30m
+knative-serving   deployment.apps/webhook                   1/1     1            1           150m
+kube-system       deployment.apps/calico-kube-controllers   1/1     1            1           152m
+kube-system       deployment.apps/coredns                   2/2     2            2           153m
+
+NAMESPACE         NAME                                                 DESIRED   CURRENT   READY   AGE
+default           replicaset.apps/hello-00001-deployment-d855694d8     0         0         0       18m
+istio-system      replicaset.apps/istio-ingressgateway-b9876bf74       3         3         3       30m
+istio-system      replicaset.apps/istiod-846b9454f                     3         3         3       30m
+knative-serving   replicaset.apps/activator-5bbf47578                  1         1         1       150m
+knative-serving   replicaset.apps/autoscaler-b86f9b6c9                 1         1         1       150m
+knative-serving   replicaset.apps/controller-75f49bc546                1         1         1       150m
+knative-serving   replicaset.apps/net-istio-controller-745b6f47b6      1         1         1       30m
+knative-serving   replicaset.apps/net-istio-webhook-678d4cf44b         1         1         1       30m
+knative-serving   replicaset.apps/webhook-849fbd7c96                   1         1         1       150m
+kube-system       replicaset.apps/calico-kube-controllers-7d64c8fdd5   1         1         1       152m
+kube-system       replicaset.apps/coredns-5dd5756b68                   2         2         2       153m
+
+NAMESPACE         NAME                                            REFERENCE              TARGETS          MINPODS   MAXPODS   REPLICAS   AGE
+istio-system      horizontalpodautoscaler.autoscaling/istiod      Deployment/istiod      <unknown>/60%    3         10        3          30m
+knative-serving   horizontalpodautoscaler.autoscaling/activator   Deployment/activator   <unknown>/100%   1         20        1          150m
+knative-serving   horizontalpodautoscaler.autoscaling/webhook     Deployment/webhook     <unknown>/100%   1         5         1          150m
+
+NAMESPACE   NAME                                      LATESTCREATED   LATESTREADY   READY   REASON
+default     configuration.serving.knative.dev/hello   hello-00001     hello-00001   True    
+
+NAMESPACE   NAME                                       CONFIG NAME   K8S SERVICE NAME   GENERATION   READY   REASON   ACTUAL REPLICAS   DESIRED REPLICAS
+default     revision.serving.knative.dev/hello-00001   hello                            1            True             0                 0
+
+NAMESPACE   NAME                              URL                                READY   REASON
+default     route.serving.knative.dev/hello   http://hello.default.example.com   True    
+
+NAMESPACE   NAME                                URL                                LATESTCREATED   LATESTREADY   READY   REASON
+default     service.serving.knative.dev/hello   http://hello.default.example.com   hello-00001     hello-00001   True    

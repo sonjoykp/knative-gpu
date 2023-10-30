@@ -1,0 +1,13 @@
+# Use the base image
+FROM nvcr.io/nvidia/k8s/cuda-sample:vectoradd-cuda10.2
+
+# Add your additional message
+RUN echo "This is a custom CUDA image with an additional message."
+
+# Set an environment variable to showcase the additional message
+ENV CUSTOM_MESSAGE="Docker image with an additional message."
+
+# You can add any other customizations or commands here if needed.
+
+# Set the entry point or command to run when the container starts
+CMD ["/bin/bash"]
