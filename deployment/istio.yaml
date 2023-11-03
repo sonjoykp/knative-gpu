@@ -9938,7 +9938,7 @@ spec:
       protocol: TCP
       targetPort: 8443
   externalIPs:
-    - 141.215.80.249
+    - 34.121.127.88
 ---
 apiVersion: v1
 kind: Service
