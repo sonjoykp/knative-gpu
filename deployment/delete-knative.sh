@@ -2,7 +2,6 @@ kubectl delete -f https://github.com/knative/serving/releases/download/knative-v
 kubectl delete -f https://github.com/knative/net-certmanager/releases/download/knative-v1.11.1/release.yaml
 kubectl delete -f https://github.com/knative/net-http01/releases/download/knative-v1.11.1/release.yaml
 
-
 #Istio
 kubectl delete -f https://github.com/knative/net-istio/releases/download/knative-v1.11.0/net-istio.yaml
 kubectl delete -f https://github.com/knative/net-istio/releases/download/knative-v1.11.0/istio.yaml
@@ -14,7 +13,6 @@ kubectl delete -f https://github.com/knative/serving/releases/download/knative-v
 kubectl delete -f https://storage.googleapis.com/knative-nightly/serving/latest/serving-core.yaml
 kubectl delete -f https://storage.googleapis.com/knative-nightly/serving/latest/serving-crds.yaml
 
-
 #Kafka
 kubectl delete -f https://github.com/knative/eventing/releases/download/knative-v1.11.4/eventing-sugar-controller.yaml
 kubectl delete -f https://github.com/knative-sandbox/eventing-kafka-broker/releases/download/knative-v1.11.6/eventing-kafka-source.yaml
@@ -25,7 +23,6 @@ kubectl delete -f https://github.com/knative-sandbox/eventing-kafka-broker/relea
 
 #Kafka Channel
 kubectl delete -f https://github.com/knative-sandbox/eventing-kafka-broker/releases/download/knative-v1.11.6/eventing-kafka-channel.yaml
-
 
 #Knative Eventing
 kubectl delete -f https://storage.googleapis.com/knative-nightly/eventing/latest/eventing-core.yaml

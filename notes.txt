@@ -4,6 +4,41 @@ curl -H "Host: gpu-pod-ksvc.default.example.com" http://141.215.80.249:31240
 
 curl -H "Host: helloworld-go.default.example.com" http://141.215.80.249:31240
 
+
+kubectl patch clusterpolicy/cluster-policy \
+    --type merge \
+    -p '{"spec": {"devicePlugin": {"config": {"name": "time-slicing-config-all", "default": "any"}}}}'
+
+
+cat << EOF > /tmp/dp-example-config.yaml
+version: v1
+flags:
+  migStrategy: "none"
+  failOnInitError: true
+  nvidiaDriverRoot: "/"
+  plugin:
+    passDeviceSpecs: false
+    deviceListStrategy: "envvar"
+    deviceIDStrategy: "uuid"
+  gfd:
+    oneshot: false
+    noTimestamp: false
+    outputFile: /etc/kubernetes/node-feature-discovery/features.d/gfd
+    sleepInterval: 60s
+sharing:
+  timeSlicing:
+    resources:
+    - name: nvidia.com/gpu
+      replicas: 5
+EOF
+
+sudo helm install nvdp nvdp/nvidia-device-plugin \
+    --version=0.12.2 \
+    --namespace nvidia-device-plugin \
+    --create-namespace \
+    --set gfd.enabled=true \
+    --set-file config.map.config=/tmp/dp-example-config.yaml
+
 NAMESPACE         NAME                                           READY   STATUS    RESTARTS   AGE
 istio-system      pod/istio-ingressgateway-b9876bf74-626ks       1/1     Running   0          30m
 istio-system      pod/istio-ingressgateway-b9876bf74-7lwbq       1/1     Running   0          30m

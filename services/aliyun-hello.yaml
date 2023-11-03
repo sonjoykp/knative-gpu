@@ -11,9 +11,11 @@ spec:
         k8s.aliyun.com/eci-use-specs: ecs.gn5i-c4g1.xlarge  # Specify a GPU-accelerated ECS instance type that is supported by Knative. 
     spec:
       containers:
-        - image: registry.cn-hangzhou.aliyuncs.com/knative-sample/helloworld-go:73fbdd56
+        #- image: registry.cn-hangzhou.aliyuncs.com/knative-sample/helloworld-go:73fbdd56
+        - image: nvidia/samples:dcgmproftester-2.0.10-cuda11.0-ubuntu18.04
+          args: ["--no-dcgm-validation", "-t 1004", "-d 30"] 
           ports:
-          - containerPort: 8080
+            - containerPort: 8080
           resources:
             limits:
               nvidia.com/gpu: '1'    # Specify the number of GPUs that are required by the container. This field is required. If you do not specify this field, an error is returned when the pod is launched. 
